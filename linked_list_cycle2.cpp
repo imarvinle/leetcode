@@ -5,6 +5,8 @@
 // 题号:142
 
 #include <set>
+#include <vector>
+#include <string>
 
 
 struct ListNode {
@@ -35,7 +37,6 @@ public:
                 break;
             }
         }
-
         if(has_cycle)
         {
             slow = head;
