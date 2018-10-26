@@ -49,4 +49,5 @@ int main(){
     string s2 = "abaddcd";
     Solution solution;
     cout << solution.isAnagram(s, s2);
+    char *a[4] = {"ds","dsd","dsd"};
 }
