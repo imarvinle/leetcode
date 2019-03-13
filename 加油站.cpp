@@ -4,8 +4,8 @@
 
 class Solution {
 public:
-    // 思路: 循环每个加油站，如果积累到当前的油量不够下一阶段则break
-    // 关键就是循环队列 %size
+    // 思路: 循环每个加油站，如果积累到当前的油量不够i++下
+    //  关键就是循环队列 %size
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
         int sum = 0;
         int cnt;
