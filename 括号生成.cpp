@@ -6,6 +6,7 @@
 
 class Solution {
 public:
+    // 深度优先搜索结合剪枝，剪枝就是去掉递归过程中不合适的部分，不再递归
     vector<string> generateParenthesis(int n) {
         if(n == 0)
             return vector<string>();
@@ -25,16 +26,12 @@ public:
         }
         // 只能先压左
         if(left == right){
-            string temp = cur;
-            temp.push_back('(');
-            helper(result, temp, left-1, right);
+            helper(result, cur+"(", left-1, right);
         }
+
         if(left <  right){
-            string temp = cur;
-            temp.push_back('(');
-            helper(result, temp, left-1, right);
-            cur.push_back(')');
-            helper(result, cur, left, right-1);
+            helper(result, cur+"(", left-1, right);
+            helper(result, cur+")", left, right-1);
         }
     }
 
