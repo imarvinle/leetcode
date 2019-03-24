@@ -41,9 +41,11 @@ public:
  */
 
 
+
+
 class Solution {
 public:
-    // 回溯
+    // 动态规划
     int minDistance(string word1, string word2) {
         int m = word1.size();
         int n = word2.size();
@@ -54,29 +56,25 @@ public:
 
         int dp[m][n];   // dp[i][j]表示,到i,j需要的最小编辑次数
         // 初始化 word1 到 word2[0]
-        for(int i = 0; i < m; i++){
+        dp[0][0] = word1[0] == word2[0] ? 0 : 1;
+        for(int i = 1; i < m; i++){
             if(word1[i] == word2[0])
                 dp[i][0] = i;
-            else if(i != 0)
-                dp[i][0] = dp[i-1][0]+1;
             else
-                dp[i][0] = 1;
+                dp[i][0] = dp[i-1][0]+1;
         }
         // 初始化  word1[0] 到 word2
-        for(int i = 0; i < n; i++){
+        for(int i = 1; i < n; i++){
             if(word1[0] == word2[i])
                 dp[0][i] = i;
-            else if(i != 0)
-                dp[0][i] = dp[0][i-1]+1;
             else
-                dp[0][i] = 1;
+                dp[0][i] = dp[0][i-1]+1;
         }
         for(int i = 1; i < m; i++){
             for(int j = 1; j < n; j++){
                 if(word1[i] == word2[j]){
-                    // 三者选最小
-                    dp[i][j] = min(dp[i-1][j-1], dp[i-1][j]+1);
-                    dp[i][j] = min (dp[i][j],dp[i][j-1]+1);
+                    // 直接等于 dp[i-1][j-1]
+                    dp[i][j] = dp[i-1][j-1];
                 }
                 else{
                     // 否则三者选最小
