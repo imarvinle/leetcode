@@ -49,3 +49,44 @@ public:
         return lis.size();
     }
 };};
+
+
+
+// 自己实现lower_bound()
+#include <vector>
+using namespace std;
+
+class AscentSequence {
+public:
+    int findLongest(vector<int> A, int n) {
+        vector<int> array;
+        for(auto num: A){
+            auto it = lower_bound(array.begin(), array.end(), num);
+            if(it != array.end()){
+                *it = num;
+            } else {
+                array.push_back(num);
+            }
+        }
+        return array.size();
+    }
+    // 查找第一个大于等于target的，左开右闭
+    template<typename T>
+    T my_lower_bound(T low, T high, int target){
+        auto left = low;
+        auto right = high;
+        while(low < high){
+            auto mid = low + (high-low)/2;
+            if(*mid >= target){
+                if(mid == left || *(mid-1) < target)
+                    return mid;
+                else
+                    high = mid-1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return high;
+    }
+
+};
