@@ -23,7 +23,6 @@ public:
     }
 
 private:
-
     ListNode* division(vector<ListNode*>& list, int begin, int end){
         if(begin == end)
             return list[begin];
